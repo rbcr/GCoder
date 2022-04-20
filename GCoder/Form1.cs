@@ -10,17 +10,47 @@ using System.Windows.Forms;
 
 namespace GCoder
 {
-    public partial class Form1 : Form
+    public partial class GCoder : Form
     {
-        public Form1()
+        public GCoder()
         {
             InitializeComponent();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void lbListadoArchivo_DragEnter(object sender, DragEventArgs e)
         {
-            var printData = GCodeParser.Parse(@"C:\\Users\\Roberto\\Desktop\\Arm First v2-[T011707][LW0.8mm][LH0.32mm][IF20.0].gcode");
-            Console.WriteLine("PRINT_DATA: " + printData.Status);
+        }
+
+        private void dgArchivos_DragDrop(object sender, DragEventArgs e)
+        {
+            string[] files = (string[])e.Data.GetData(DataFormats.FileDrop, false);
+            foreach (string file in files)
+            {
+                var printData = GCodeParser.Parse(file);
+                if (printData.Status == true)
+                {
+                    dgArchivos.Rows.Add(
+                        printData.FileName, 
+                        printData.PrintTime, 
+                        printData.Material, 
+                        printData.LineWeight, 
+                        printData.LineHeight,
+                        printData.Infill,
+                        Math.Round(printData.Cost, 2),
+                        Math.Round(printData.Weight, 2),
+                        Math.Round(printData.Amount, 2)
+                    );
+                }
+            }
+        }
+
+        private void dgArchivos_DragEnter(object sender, DragEventArgs e)
+        {
+
+            if (e.Data.GetDataPresent(DataFormats.FileDrop, false) == true)
+            {
+                e.Effect = DragDropEffects.All;
+            }
         }
     }
 }
