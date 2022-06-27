@@ -201,7 +201,11 @@
             this.Controls.Add(this.btnClearDataset);
             this.Controls.Add(this.btnCopyToClipboard);
             this.Controls.Add(this.gbSeleccionarArchivo);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "GCoder";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "GCoder";
             this.gbSeleccionarArchivo.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgArchivos)).EndInit();
