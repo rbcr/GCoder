@@ -31,7 +31,6 @@ namespace GCoder
                                 {
                                     string[] printAttributes = printSetting.Trim().Split(new string[] { "-[" }, StringSplitOptions.None);
                                     fileName = printAttributes[0].Replace("jobname: ", "");
-                                    Console.WriteLine("JOBNAME " +  fileName);
                                     string[] settings = printAttributes[1].Split('[');
                                     foreach (string setting in settings)
                                     {
