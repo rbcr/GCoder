@@ -43,6 +43,12 @@ The main features of the tool:
 - Export the table information to a CSV file
 - Delete the information loaded in the table
 
+## References Table of Marlin codes
+
+http://files.fieldofview.com/cura/Replacement_Patterns.html
+https://github.com/Ultimaker/Cura/blob/main/resources/definitions/fdmprinter.def.json
+https://github.com/Ultimaker/Cura/blob/master/resources/i18n/fdmprinter.def.json.pot
+
 ## Screenshots
 
 ![image](https://raw.githubusercontent.com/rbcr/GCoder/master/Screenshots/a7efa18d3ea6502106bd8edf3e7d1f67.gif)
