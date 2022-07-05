@@ -15,8 +15,11 @@ As a first step, the following modules must be installed in Cura with the specif
     ![image](https://raw.githubusercontent.com/rbcr/GCoder/master/Screenshots/gcode_filename_format_plus_configuration.png)
 
     ```
-    [base_name]-[T[print_time]]_[LW[line_width]mm][LH[layer_height]mm][IF[infill_sparse_density]]
+    [base_name]-[T[print_time]]_[LW[line_width]mm][LH[layer_height]mm][IF[infill_sparse_density][SC[scale]][CA[date]]]]
     ```
+    T: Printing time
+    SC: Scale of the model
+    CA: Creation date of the file
 
     https://github.com/rgomezjnr/GcodeFilenameFormat
   
@@ -29,7 +32,7 @@ As a first step, the following modules must be installed in Cura with the specif
     ![image](https://raw.githubusercontent.com/rbcr/GCoder/master/Screenshots/printer_settings_2.png)
 
     ```
-    ; PRINT_INFO | v1 | filament_amount: {filament_amount} | filament_weight: {filament_weight} | filament_cost: {filament_cost} | print_time: {print_time} | material_name: {material_name} | brand: {material_brand} | jobname: {jobname}
+    ; PRINT_INFO | v2 | filament_amount: {filament_amount} | filament_weight: {filament_weight} | filament_cost: {filament_cost} | print_time: {print_time} | material_name: {material_name} | brand: {material_brand} | jobname: {jobname} | support_enabled: {support_enable}
     ```
 
 ## Usage
