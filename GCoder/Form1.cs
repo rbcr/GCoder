@@ -26,10 +26,10 @@ namespace GCoder
                 if (printData.Status == true)
                 {
                     dgArchivos.Rows.Add(
-                        printData.FileName, 
-                        printData.PrintTime, 
-                        printData.Material, 
-                        printData.LineWeight, 
+                        printData.FileName,
+                        printData.PrintTime,
+                        printData.Material,
+                        printData.LineWeight,
                         printData.LineHeight,
                         printData.Infill,
                         Math.Round(printData.Cost, 2),
@@ -40,8 +40,8 @@ namespace GCoder
                         Math.Round(printData.ObjectWidth, 2),
                         Math.Round(printData.ObjectHeight, 2),
                         Math.Round(printData.ObjectBackground, 2),
-                        printData.Created_at.ToString("dd/MM/yyyy")
-                    );
+                        (printData.Created_at.ToString() != "01/01/0001 12:00:00 a. m.") ? printData.Created_at?.ToString("dd/MM/yyyy") : null
+                    ); ;
                 }
             }
         }
@@ -150,7 +150,7 @@ namespace GCoder
                             Math.Round(printData.ObjectWidth, 2),
                             Math.Round(printData.ObjectHeight, 2),
                             Math.Round(printData.ObjectBackground, 2),
-                            printData.Created_at.ToString("dd/MM/yyyy")
+                            (printData.Created_at != null) ? printData.Created_at?.ToString("dd/MM/yyyy") : null
                         );
                     }
                 }

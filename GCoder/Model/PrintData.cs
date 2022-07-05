@@ -22,7 +22,7 @@ namespace GCoder.Model
         public double ObjectWidth { get; set; } = 0;
         public double ObjectHeight { get; set; } = 0;
         public double ObjectBackground { get; set; } = 0;
-        public DateTime Created_at { get; set; }
+        public DateTime? Created_at { get; set; } = null;
         public bool Status { get; set; } = false;
     }
 }
