@@ -17,6 +17,12 @@ namespace GCoder.Model
         public double Cost { get; set; }
         public double Weight { get; set; }
         public double Amount { get; set; }
+        public double Scale { get; set; }
+        public bool SupportsEnabled { get; set; } = false;
+        public double ObjectWidth { get; set; } = 0;
+        public double ObjectHeight { get; set; } = 0;
+        public double ObjectBackground { get; set; } = 0;
+        public DateTime Created_at { get; set; }
         public bool Status { get; set; } = false;
     }
 }

@@ -17,8 +17,9 @@ namespace GCoder
                 if (gcodeData.Contains("; PRINT_INFO"))
                 {
                     Double filamentAmount = 0, filamentWeight = 0, filamentCost = 0;
-                    string materialName = null, materialBrand = null, fileName = null, printTime = null;
-                    Double lineWeight = 0, lineHeight = 0, infill = 0;
+                    string materialName = null, materialBrand = null, fileName = null, printTime = null, created_at = null;
+                    Double lineWeight = 0, lineHeight = 0, infill = 0, scale = 0, maxx = 0, minx = 0, maxy = 0, miny = 0, maxz = 0, minz = 0;
+                    bool SupportsEnabled = false;
                     string[] rows = gcodeData.Split(new char[] { '\n' }).ToArray();
                     foreach (string row in rows)
                     {
@@ -41,6 +42,10 @@ namespace GCoder
                                             lineHeight = Double.Parse(parsedSetting.Replace("LH", ""));
                                         if (parsedSetting.Contains("IF"))
                                             infill = Double.Parse(parsedSetting.Replace("IF", ""));
+                                        if (parsedSetting.Contains("SC"))
+                                            scale = Double.Parse(parsedSetting.Replace("SC", "").Trim());
+                                        if (parsedSetting.Contains("CA"))
+                                            created_at = parsedSetting.Replace("CA", "").Trim();
                                     }
                                 }
 
@@ -61,10 +66,31 @@ namespace GCoder
 
                                 if (printSetting.Contains("print_time"))
                                     printTime = printSetting.Replace("print_time:", "").Trim();
+
+                                if (printSetting.Contains("support_enabled"))
+                                    SupportsEnabled = Convert.ToBoolean(printSetting.Replace("support_enabled:", "").Trim());                                    
                             }
                         }
+
+                        if (row.Contains("MAXX"))
+                            maxx = Convert.ToDouble(row.Replace(";MAXX:", "").Trim());
+
+                        if (row.Contains("MINX"))
+                            minx = Convert.ToDouble(row.Replace(";MINX:", "").Trim());
+
+                        if (row.Contains("MAXY"))
+                            maxy = Convert.ToDouble(row.Replace(";MAXY:", "").Trim());
+
+                        if (row.Contains("MINY"))
+                            miny = Convert.ToDouble(row.Replace(";MINY:", "").Trim());
+
+                        if (row.Contains("MAXZ"))
+                            maxz = Convert.ToDouble(row.Replace(";MAXZ:", "").Trim());
+
+                        if (row.Contains("MINZ"))
+                            minz = Convert.ToDouble(row.Replace(";MINZ:", "").Trim());
                     }
-                    
+
                     return new PrintData()
                     {
                         Status = true,
@@ -76,7 +102,13 @@ namespace GCoder
                         Infill = infill,
                         Cost = filamentCost,
                         Weight = filamentWeight,
-                        Amount = filamentAmount
+                        Amount = filamentAmount,
+                        Scale = scale,
+                        SupportsEnabled = SupportsEnabled,
+                        ObjectWidth = maxx - minx,
+                        ObjectHeight = maxy - miny,
+                        ObjectBackground = maxz - minz,
+                        Created_at = Convert.ToDateTime(created_at)
                     };
                 }
                 else

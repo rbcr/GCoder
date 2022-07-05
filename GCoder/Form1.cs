@@ -34,7 +34,13 @@ namespace GCoder
                         printData.Infill,
                         Math.Round(printData.Cost, 2),
                         Math.Round(printData.Weight, 2),
-                        Math.Round(printData.Amount, 2)
+                        Math.Round(printData.Amount, 2),
+                        Math.Round(printData.Scale),
+                        printData.SupportsEnabled.ToString(),
+                        Math.Round(printData.ObjectWidth, 2),
+                        Math.Round(printData.ObjectHeight, 2),
+                        Math.Round(printData.ObjectBackground, 2),
+                        printData.Created_at.ToString("dd/MM/yyyy")
                     );
                 }
             }
@@ -138,7 +144,13 @@ namespace GCoder
                             printData.Infill,
                             Math.Round(printData.Cost, 2),
                             Math.Round(printData.Weight, 2),
-                            Math.Round(printData.Amount, 2)
+                            Math.Round(printData.Amount, 2),
+                            Math.Round(printData.Scale),
+                            printData.SupportsEnabled.ToString(),
+                            Math.Round(printData.ObjectWidth, 2),
+                            Math.Round(printData.ObjectHeight, 2),
+                            Math.Round(printData.ObjectBackground, 2),
+                            printData.Created_at.ToString("dd/MM/yyyy")
                         );
                     }
                 }
