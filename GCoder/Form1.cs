@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Text;
 using System.Windows.Forms;
@@ -13,10 +14,6 @@ namespace GCoder
             InitializeComponent();
         }
 
-        private void lbListadoArchivo_DragEnter(object sender, DragEventArgs e)
-        {
-        }
-
         private void dgArchivos_DragDrop(object sender, DragEventArgs e)
         {
             string[] files = (string[])e.Data.GetData(DataFormats.FileDrop, false);
@@ -26,6 +23,7 @@ namespace GCoder
                 if (printData.Status == true)
                 {
                     dgArchivos.Rows.Add(
+                        printData.Thumbnail,
                         printData.FileName,
                         printData.PrintTime,
                         printData.Material,
@@ -72,6 +70,16 @@ namespace GCoder
             }
         }
 
+        private void dgArchivos_DoubleClick(object sender, EventArgs e)
+        {
+            if (dgArchivos.CurrentCell.ColumnIndex.Equals(0) && dgArchivos.GetCellCount(DataGridViewElementStates.Selected) > 0)
+            {
+                Image selectedThumbnail = (Image)dgArchivos.CurrentCell.Value;
+                Clipboard.SetImage(selectedThumbnail);
+                MessageBox.Show("Image copied to clipboard", "Important", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
         private void btnExportToCSV_Click(object sender, EventArgs e)
         {
             if (dgArchivos.GetCellCount(DataGridViewElementStates.Visible) > 0)
@@ -92,18 +100,14 @@ namespace GCoder
                     StringBuilder columnLine = new StringBuilder();
                     List<string> headers = new List<string>();
                     foreach (DataGridViewColumn col in column)
-                    {
                         headers.Add(col.Name.ToString());
-                    }
                     lines.Add(String.Join(",", headers).ToString());
 
                     foreach (DataGridViewRow row in dgArchivos.Rows)
                     {
                         List<string> dataLine = new List<string>();
                         for (var i = 0; i < dgArchivos.Columns.Count; i++)
-                        {
                             dataLine.Add(row.Cells[i].Value.ToString());
-                        }
                         lines.Add(String.Join(",", dataLine).ToString());
                     }
 
@@ -136,6 +140,7 @@ namespace GCoder
                     if (printData.Status == true)
                     {
                         dgArchivos.Rows.Add(
+                            printData.Thumbnail,
                             printData.FileName,
                             printData.PrintTime,
                             printData.Material,
@@ -154,7 +159,7 @@ namespace GCoder
                         );
                     }
                 }
-            }                
+            }
         }
     }
 }

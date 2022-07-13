@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,6 +24,7 @@ namespace GCoder.Model
         public double ObjectHeight { get; set; } = 0;
         public double ObjectBackground { get; set; } = 0;
         public DateTime? Created_at { get; set; } = null;
+        public Image Thumbnail { get; set; }
         public bool Status { get; set; } = false;
     }
 }

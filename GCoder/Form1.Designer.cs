@@ -36,6 +36,7 @@
             this.btnExportToCSV = new System.Windows.Forms.Button();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.btnOpenFile = new System.Windows.Forms.Button();
+            this.Thumbnail = new System.Windows.Forms.DataGridViewImageColumn();
             this.FileName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PrintTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Material = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -76,8 +77,11 @@
             this.dgArchivos.AllowUserToOrderColumns = true;
             this.dgArchivos.AllowUserToResizeColumns = false;
             this.dgArchivos.AllowUserToResizeRows = false;
+            this.dgArchivos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
+            this.dgArchivos.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dgArchivos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgArchivos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Thumbnail,
             this.FileName,
             this.PrintTime,
             this.Material,
@@ -99,6 +103,7 @@
             this.dgArchivos.TabIndex = 1;
             this.dgArchivos.DragDrop += new System.Windows.Forms.DragEventHandler(this.dgArchivos_DragDrop);
             this.dgArchivos.DragEnter += new System.Windows.Forms.DragEventHandler(this.dgArchivos_DragEnter);
+            this.dgArchivos.DoubleClick += new System.EventHandler(this.dgArchivos_DoubleClick);
             // 
             // btnClearDataset
             // 
@@ -140,12 +145,20 @@
             this.btnOpenFile.UseVisualStyleBackColor = true;
             this.btnOpenFile.Click += new System.EventHandler(this.btnOpenFile_Click);
             // 
+            // Thumbnail
+            // 
+            this.Thumbnail.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Thumbnail.HeaderText = "Thumbnail";
+            this.Thumbnail.MinimumWidth = 64;
+            this.Thumbnail.Name = "Thumbnail";
+            // 
             // FileName
             // 
             this.FileName.HeaderText = "File Name";
             this.FileName.Name = "FileName";
             this.FileName.ReadOnly = true;
             this.FileName.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.FileName.Width = 79;
             // 
             // PrintTime
             // 
@@ -153,6 +166,7 @@
             this.PrintTime.Name = "PrintTime";
             this.PrintTime.ReadOnly = true;
             this.PrintTime.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.PrintTime.Width = 79;
             // 
             // Material
             // 
@@ -160,6 +174,7 @@
             this.Material.Name = "Material";
             this.Material.ReadOnly = true;
             this.Material.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Material.Width = 69;
             // 
             // LineWeight
             // 
@@ -167,6 +182,7 @@
             this.LineWeight.Name = "LineWeight";
             this.LineWeight.ReadOnly = true;
             this.LineWeight.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.LineWeight.Width = 89;
             // 
             // LineHeight
             // 
@@ -174,6 +190,7 @@
             this.LineHeight.Name = "LineHeight";
             this.LineHeight.ReadOnly = true;
             this.LineHeight.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.LineHeight.Width = 86;
             // 
             // Infill
             // 
@@ -181,6 +198,7 @@
             this.Infill.Name = "Infill";
             this.Infill.ReadOnly = true;
             this.Infill.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Infill.Width = 50;
             // 
             // Cost
             // 
@@ -188,6 +206,7 @@
             this.Cost.Name = "Cost";
             this.Cost.ReadOnly = true;
             this.Cost.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Cost.Width = 53;
             // 
             // Weight
             // 
@@ -195,6 +214,7 @@
             this.Weight.Name = "Weight";
             this.Weight.ReadOnly = true;
             this.Weight.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Weight.Width = 66;
             // 
             // Amount
             // 
@@ -202,36 +222,43 @@
             this.Amount.Name = "Amount";
             this.Amount.ReadOnly = true;
             this.Amount.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Amount.Width = 68;
             // 
             // Scale
             // 
             this.Scale.HeaderText = "Scale";
             this.Scale.Name = "Scale";
+            this.Scale.Width = 59;
             // 
             // SupportsEnabled
             // 
             this.SupportsEnabled.HeaderText = "Supports Enabled";
             this.SupportsEnabled.Name = "SupportsEnabled";
+            this.SupportsEnabled.Width = 106;
             // 
             // ObjectWidth
             // 
             this.ObjectWidth.HeaderText = "Object Width";
             this.ObjectWidth.Name = "ObjectWidth";
+            this.ObjectWidth.Width = 87;
             // 
             // ObjectHeight
             // 
             this.ObjectHeight.HeaderText = "Object Height";
             this.ObjectHeight.Name = "ObjectHeight";
+            this.ObjectHeight.Width = 89;
             // 
             // ObjectBackground
             // 
             this.ObjectBackground.HeaderText = "Object Background";
             this.ObjectBackground.Name = "ObjectBackground";
+            this.ObjectBackground.Width = 114;
             // 
             // Created_at
             // 
             this.Created_at.HeaderText = "Created at";
             this.Created_at.Name = "Created_at";
+            this.Created_at.Width = 75;
             // 
             // GCoder
             // 
@@ -264,6 +291,7 @@
         private System.Windows.Forms.Button btnExportToCSV;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.Button btnOpenFile;
+        private System.Windows.Forms.DataGridViewImageColumn Thumbnail;
         private System.Windows.Forms.DataGridViewTextBoxColumn FileName;
         private System.Windows.Forms.DataGridViewTextBoxColumn PrintTime;
         private System.Windows.Forms.DataGridViewTextBoxColumn Material;
