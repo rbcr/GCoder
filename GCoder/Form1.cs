@@ -107,7 +107,7 @@ namespace GCoder
                     {
                         List<string> dataLine = new List<string>();
                         for (var i = 0; i < dgArchivos.Columns.Count; i++)
-                            dataLine.Add(row.Cells[i].Value.ToString());
+                            dataLine.Add((row.Cells[i].ColumnIndex != 0) ? row.Cells[i].Value.ToString() : "-");
                         lines.Add(String.Join(",", dataLine).ToString());
                     }
 
