@@ -145,5 +145,18 @@ namespace GCoder
 
             return (Image)(new Bitmap(image, new Size(64, 64))); ;
         }
+
+        public static double CalculateConsumption(string printingTime, Boolean returningCost = false)
+        {
+            DateTime initialTime = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd 00:00:00"));
+            DateTime parsedPrintingTime = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd") + " " + printingTime);
+            TimeSpan totalPrintingTime = parsedPrintingTime.Subtract(initialTime);
+
+            double currentKHWPrice = Properties.Settings.Default.KWH_PRICE;
+            double currentConsumptionPrinter = Properties.Settings.Default.ENDER3_CONSUME;
+            double totalHours = totalPrintingTime.TotalMinutes / 60;
+            double newConsumption = (returningCost == false) ? (totalHours * currentConsumptionPrinter) / 1000 : (totalHours * currentKHWPrice * currentConsumptionPrinter) / 1000;
+            return Math.Round(newConsumption, 2);
+        }
     }
 }

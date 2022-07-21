@@ -36,6 +36,9 @@
             this.btnExportToCSV = new System.Windows.Forms.Button();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.btnOpenFile = new System.Windows.Forms.Button();
+            this.txtKWHPrice = new System.Windows.Forms.TextBox();
+            this.btnSaveKWHPrice = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.Thumbnail = new System.Windows.Forms.DataGridViewImageColumn();
             this.FileName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PrintTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -44,6 +47,8 @@
             this.LineHeight = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Infill = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Cost = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.KWHCost = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.KWHConsumption = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Weight = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Amount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Scale = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -63,9 +68,9 @@
             // gbSeleccionarArchivo
             // 
             this.gbSeleccionarArchivo.Controls.Add(this.dgArchivos);
-            this.gbSeleccionarArchivo.Location = new System.Drawing.Point(12, 53);
+            this.gbSeleccionarArchivo.Location = new System.Drawing.Point(12, 62);
             this.gbSeleccionarArchivo.Name = "gbSeleccionarArchivo";
-            this.gbSeleccionarArchivo.Size = new System.Drawing.Size(719, 409);
+            this.gbSeleccionarArchivo.Size = new System.Drawing.Size(822, 429);
             this.gbSeleccionarArchivo.TabIndex = 0;
             this.gbSeleccionarArchivo.TabStop = false;
             this.gbSeleccionarArchivo.Text = "Drag & drop GCode files";
@@ -89,6 +94,8 @@
             this.LineHeight,
             this.Infill,
             this.Cost,
+            this.KWHCost,
+            this.KWHConsumption,
             this.Weight,
             this.Amount,
             this.Scale,
@@ -97,9 +104,9 @@
             this.ObjectHeight,
             this.ObjectBackground,
             this.Created_at});
-            this.dgArchivos.Location = new System.Drawing.Point(12, 19);
+            this.dgArchivos.Location = new System.Drawing.Point(6, 19);
             this.dgArchivos.Name = "dgArchivos";
-            this.dgArchivos.Size = new System.Drawing.Size(707, 379);
+            this.dgArchivos.Size = new System.Drawing.Size(810, 393);
             this.dgArchivos.TabIndex = 1;
             this.dgArchivos.DragDrop += new System.Windows.Forms.DragEventHandler(this.dgArchivos_DragDrop);
             this.dgArchivos.DragEnter += new System.Windows.Forms.DragEventHandler(this.dgArchivos_DragEnter);
@@ -107,17 +114,17 @@
             // 
             // btnClearDataset
             // 
-            this.btnClearDataset.Location = new System.Drawing.Point(623, 12);
+            this.btnClearDataset.Location = new System.Drawing.Point(720, 22);
             this.btnClearDataset.Name = "btnClearDataset";
             this.btnClearDataset.Size = new System.Drawing.Size(108, 23);
             this.btnClearDataset.TabIndex = 2;
-            this.btnClearDataset.Text = "Drop GCode data";
+            this.btnClearDataset.Text = "Clear GCode data";
             this.btnClearDataset.UseVisualStyleBackColor = true;
             this.btnClearDataset.Click += new System.EventHandler(this.btnClearDataset_Click);
             // 
             // btnCopyToClipboard
             // 
-            this.btnCopyToClipboard.Location = new System.Drawing.Point(508, 12);
+            this.btnCopyToClipboard.Location = new System.Drawing.Point(605, 22);
             this.btnCopyToClipboard.Name = "btnCopyToClipboard";
             this.btnCopyToClipboard.Size = new System.Drawing.Size(109, 23);
             this.btnCopyToClipboard.TabIndex = 3;
@@ -127,7 +134,7 @@
             // 
             // btnExportToCSV
             // 
-            this.btnExportToCSV.Location = new System.Drawing.Point(406, 12);
+            this.btnExportToCSV.Location = new System.Drawing.Point(503, 22);
             this.btnExportToCSV.Name = "btnExportToCSV";
             this.btnExportToCSV.Size = new System.Drawing.Size(96, 23);
             this.btnExportToCSV.TabIndex = 4;
@@ -137,13 +144,41 @@
             // 
             // btnOpenFile
             // 
-            this.btnOpenFile.Location = new System.Drawing.Point(12, 12);
+            this.btnOpenFile.Location = new System.Drawing.Point(12, 22);
             this.btnOpenFile.Name = "btnOpenFile";
             this.btnOpenFile.Size = new System.Drawing.Size(120, 23);
             this.btnOpenFile.TabIndex = 5;
             this.btnOpenFile.Text = "Open GCode File";
             this.btnOpenFile.UseVisualStyleBackColor = true;
             this.btnOpenFile.Click += new System.EventHandler(this.btnOpenFile_Click);
+            // 
+            // txtKWHPrice
+            // 
+            this.txtKWHPrice.Location = new System.Drawing.Point(655, 511);
+            this.txtKWHPrice.Name = "txtKWHPrice";
+            this.txtKWHPrice.Size = new System.Drawing.Size(57, 20);
+            this.txtKWHPrice.TabIndex = 6;
+            this.txtKWHPrice.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // btnSaveKWHPrice
+            // 
+            this.btnSaveKWHPrice.Location = new System.Drawing.Point(720, 509);
+            this.btnSaveKWHPrice.Name = "btnSaveKWHPrice";
+            this.btnSaveKWHPrice.Size = new System.Drawing.Size(114, 23);
+            this.btnSaveKWHPrice.TabIndex = 7;
+            this.btnSaveKWHPrice.Text = "Update KwH Price";
+            this.btnSaveKWHPrice.UseVisualStyleBackColor = true;
+            this.btnSaveKWHPrice.Click += new System.EventHandler(this.btnSaveKWHPrice_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(632, 511);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(17, 17);
+            this.label1.TabIndex = 8;
+            this.label1.Text = "$";
             // 
             // Thumbnail
             // 
@@ -208,6 +243,18 @@
             this.Cost.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.Cost.Width = 53;
             // 
+            // KWHCost
+            // 
+            this.KWHCost.HeaderText = "KWH Cost";
+            this.KWHCost.Name = "KWHCost";
+            this.KWHCost.Width = 82;
+            // 
+            // KWHConsumption
+            // 
+            this.KWHConsumption.HeaderText = "KWH Consumption";
+            this.KWHConsumption.Name = "KWHConsumption";
+            this.KWHConsumption.Width = 112;
+            // 
             // Weight
             // 
             this.Weight.HeaderText = "Weight";
@@ -264,7 +311,10 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(740, 473);
+            this.ClientSize = new System.Drawing.Size(844, 549);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.btnSaveKWHPrice);
+            this.Controls.Add(this.txtKWHPrice);
             this.Controls.Add(this.btnOpenFile);
             this.Controls.Add(this.btnExportToCSV);
             this.Controls.Add(this.btnClearDataset);
@@ -276,9 +326,11 @@
             this.Name = "GCoder";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "GCoder";
+            this.Load += new System.EventHandler(this.GCoder_Load);
             this.gbSeleccionarArchivo.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgArchivos)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -291,6 +343,9 @@
         private System.Windows.Forms.Button btnExportToCSV;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.Button btnOpenFile;
+        private System.Windows.Forms.TextBox txtKWHPrice;
+        private System.Windows.Forms.Button btnSaveKWHPrice;
+        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridViewImageColumn Thumbnail;
         private System.Windows.Forms.DataGridViewTextBoxColumn FileName;
         private System.Windows.Forms.DataGridViewTextBoxColumn PrintTime;
@@ -299,9 +354,11 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn LineHeight;
         private System.Windows.Forms.DataGridViewTextBoxColumn Infill;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cost;
+        private System.Windows.Forms.DataGridViewTextBoxColumn KWHCost;
+        private System.Windows.Forms.DataGridViewTextBoxColumn KWHConsumption;
         private System.Windows.Forms.DataGridViewTextBoxColumn Weight;
         private System.Windows.Forms.DataGridViewTextBoxColumn Amount;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Scale;
+        private new System.Windows.Forms.DataGridViewTextBoxColumn Scale;
         private System.Windows.Forms.DataGridViewTextBoxColumn SupportsEnabled;
         private System.Windows.Forms.DataGridViewTextBoxColumn ObjectWidth;
         private System.Windows.Forms.DataGridViewTextBoxColumn ObjectHeight;
