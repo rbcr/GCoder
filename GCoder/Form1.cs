@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
+using System.Resources;
 using System.Text;
 using System.Windows.Forms;
 
@@ -31,9 +32,11 @@ namespace GCoder
                         printData.LineHeight,
                         printData.Infill,
                         Math.Round(printData.Cost, 2),
+                        GCodeParser.CalculateConsumption(printData.PrintTime, true), 
+                        GCodeParser.CalculateConsumption(printData.PrintTime) + " KwH",
                         Math.Round(printData.Weight, 2),
                         Math.Round(printData.Amount, 2),
-                        Math.Round(printData.Scale),
+                        Math.Round(printData.Scale / 100, 2),
                         printData.SupportsEnabled.ToString(),
                         Math.Round(printData.ObjectWidth, 2),
                         Math.Round(printData.ObjectHeight, 2),
@@ -148,9 +151,11 @@ namespace GCoder
                             printData.LineHeight,
                             printData.Infill,
                             Math.Round(printData.Cost, 2),
+                            GCodeParser.CalculateConsumption(printData.PrintTime, true),
+                            GCodeParser.CalculateConsumption(printData.PrintTime) + " KwH",
                             Math.Round(printData.Weight, 2),
                             Math.Round(printData.Amount, 2),
-                            Math.Round(printData.Scale),
+                            Math.Round(printData.Scale / 100, 2),
                             printData.SupportsEnabled.ToString(),
                             Math.Round(printData.ObjectWidth, 2),
                             Math.Round(printData.ObjectHeight, 2),
@@ -160,6 +165,19 @@ namespace GCoder
                     }
                 }
             }
+        }
+
+        private void GCoder_Load(object sender, EventArgs e)
+        {
+            txtKWHPrice.Text = Properties.Settings.Default.KWH_PRICE.ToString();
+        }
+
+        private void btnSaveKWHPrice_Click(object sender, EventArgs e)
+        {
+            double newKWHPrice = Math.Round(Convert.ToDouble(txtKWHPrice.Text));
+            Properties.Settings.Default["KWH_PRICE"] = newKWHPrice;
+            Properties.Settings.Default.Save();
+            MessageBox.Show("The KwH Price has been updated", "Important", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }
